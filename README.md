@@ -2,10 +2,10 @@
   <img src="https://raw.github.com/tr8n/tr8n/master/doc/screenshots/tr8nlogo.png">
 </p>
 
-Tr8n Memcached Adapter
+Tr8n EHCache Adapter
 ==================
 
-This cache adapter allows you to cache Tr8n data in Memcached server. 
+This cache adapter allows you to cache Tr8n data in EHCache. 
 
 
 Installation
