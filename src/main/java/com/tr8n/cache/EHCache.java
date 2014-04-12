@@ -27,10 +27,10 @@ import java.util.Map;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
-import com.tr8n.core.Cache;
 import com.tr8n.core.Tr8n;
+import com.tr8n.core.cache.CacheAdapter;
 
-public class EHCache extends Cache {
+public class EHCache extends CacheAdapter {
 	public static final String CACHE_NAME = "tr8n";
 	
 	CacheManager singletonManager;
@@ -80,13 +80,6 @@ public class EHCache extends Cache {
 		return getVersion() + "_" + key;
 	}
 
-	private int getTimeout() {
-		if (getConfig().get("timeout") == null) 
-			return 0;
-		return (Integer) getConfig().get("timeout");
-	}
-	
-	@Override
 	public Object fetch(String key, Map<String, Object> options) {
 		if (isInlineMode(options)) return null;
 		
@@ -99,7 +92,6 @@ public class EHCache extends Cache {
 		}
 	}
 
-	@Override
 	public void store(String key, Object data, Map<String, Object> options) {
 		if (isInlineMode(options)) return;
 
@@ -110,7 +102,6 @@ public class EHCache extends Cache {
 		}
 	}
 
-	@Override
 	public void delete(String key, Map<String, Object> options) {
 		try {
 			getCache().remove(getVersionedKey(key));
@@ -119,4 +110,8 @@ public class EHCache extends Cache {
 		}
 	}
 
+    public void reset() {
+    	incrementVersion();
+    }
+	
 }
