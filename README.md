@@ -16,7 +16,7 @@ Add the following dependency to your pom.xml:
 ```xml
 <dependency>
   <groupId>com.translationexchange</groupId>
-  <artifactId>cache-ehcache</artifactId>
+  <artifactId>tml-ehcache</artifactId>
   <version>0.2.1</version>
 </dependency>
 ```

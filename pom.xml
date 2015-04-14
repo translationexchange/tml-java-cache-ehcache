@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.translationexchange</groupId>
-	<artifactId>cache-ehcache</artifactId>
+	<artifactId>tml-ehcache</artifactId>
 	<version>0.2.1</version>
 	<packaging>jar</packaging>
 
-	<name>cache-ehcache</name>
+	<name>tml-ehcache</name>
 	<description>EHCache adapter for TML</description>
 	<url>https://github.com/translationexchange/tml-java-cache-ehcache</url>
 	<inceptionYear>2015</inceptionYear>
