@@ -2,25 +2,25 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.tr8nhub</groupId>
+	<groupId>com.translationexchange</groupId>
 	<artifactId>cache-ehcache</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.1</version>
 	<packaging>jar</packaging>
 
-	<name>tr8n-cache-ehcache</name>
-	<description>EHCache adapter for Tr8n SDKs</description>
-	<url>https://github.com/tr8n/tr8n_java_cache_ehcache</url>
-	<inceptionYear>2014</inceptionYear>
+	<name>cache-ehcache</name>
+	<description>EHCache adapter for TML</description>
+	<url>https://github.com/translationexchange/tml-java-cache-ehcache</url>
+	<inceptionYear>2015</inceptionYear>
 
 	<organization>
-		<name>Tr8nHub</name>
-		<url>https://tr8nhub.com</url>
+		<name>Translation Exchange, Inc</name>
+		<url>http://translationexchange.com</url>
 	</organization>
 
 	<developers>
 		<developer>
 			<name>Michael Berkovich</name>
-			<email>michael@tr8nhub.com</email>
+			<email>michael@translationexchange.com</email>
 		</developer>
 	</developers>
 
@@ -46,9 +46,9 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git://github.com/tr8n/tr8n_java_cache_ehcache.git</connection>
-		<developerConnection>scm:git:git://github.com/tr8n/tr8n_java_cache_ehcache.git</developerConnection>
-		<url>https://github.com/tr8n/tr8n_java_cache_ehcache</url>
+		<connection>scm:git:git://github.com/translationexchange/tml-java-cache-ehcache.git</connection>
+		<developerConnection>scm:git:git://github.com/translationexchange/tml-java-cache-ehcache.git</developerConnection>
+		<url>https://github.com/translationexchange/tml-java-cache-ehcache</url>
 	</scm>
 
 	<dependencies>
@@ -59,9 +59,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.tr8nhub</groupId>
-			<artifactId>core</artifactId>
-			<version>0.1.0</version>
+			<groupId>com.translationexchange</groupId>
+			<artifactId>tml</artifactId>
+			<version>0.2.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
