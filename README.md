@@ -30,9 +30,8 @@ To initialize and use this cache adapter use the following settings:
 ```java
 
 Tml.getConfig().setCache(Utils.buildMap(
-  "class",  "com.translationexchange.cache.EHCache",
-  "version",  1,
-  "timeout",  3600
+  "enabled", true,
+  "class",  "com.translationexchange.cache.EHCache"
 ));
 
 ```
@@ -40,7 +39,7 @@ Tml.getConfig().setCache(Utils.buildMap(
 Links
 ==================
 
-* Register on TranslationExchange.com: https://translationexchange.com
+* Register on TranslationExchange.com: http://translationexchange.com
 
 * Follow TranslationExchange on Twitter: https://twitter.com/translationx
 

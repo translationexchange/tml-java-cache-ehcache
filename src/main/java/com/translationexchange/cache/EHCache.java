@@ -40,7 +40,7 @@ import com.translationexchange.core.Tml;
 import com.translationexchange.core.cache.CacheAdapter;
 
 public class EHCache extends CacheAdapter {
-	public static final String CACHE_NAME = "tr8n";
+	public static final String CACHE_NAME = "cache";
 	
 	CacheManager singletonManager;
 	Integer version;
@@ -52,48 +52,17 @@ public class EHCache extends CacheAdapter {
 	private net.sf.ehcache.Cache getCache() throws Exception {
 		if (singletonManager == null) {
 			singletonManager = CacheManager.create();
-			singletonManager.addCache(new net.sf.ehcache.Cache(CACHE_NAME, 5000, false, false, getTimeout(), 2));
+			singletonManager.addCache(new net.sf.ehcache.Cache(getVersionedKey(CACHE_NAME), 5000, false, false, getTimeout(), 2));
 		}
 		
 		return singletonManager.getCache(CACHE_NAME);
 	}
 
-	public Integer getVersion() {
-		try {
-			Element element = getCache().get("version");
-			version = (Integer) element.getObjectValue();
-			if (version == null) {
-				version = (Integer) getConfig().get("version");
-				setVersion(version);
-			}
-		} catch (Exception ex) {
-			version = (Integer) getConfig().get("version");
-		}
-		
-		return version;
-	}
-	
-	public void setVersion(Integer version) {
-		try {
-			getCache().put(new Element("version", version));
-			this.version = version;
-		} catch (Exception ex) {
-		}
-	}
-
-	public void incrementVersion() {
-		setVersion(getVersion() + 1);
-	}
-	
-	protected String getVersionedKey(String key) {
-		return getVersion() + "_" + key;
-	}
-
 	public Object fetch(String key, Map<String, Object> options) {
-		if (isInlineMode(options)) return null;
-		
 		try {
-			Element element = getCache().get(getVersionedKey(key));
+			String versionedKey = getVersionedKey(key);
+			Element element = getCache().get(versionedKey); 
+			debug("cache " + (element.getObjectValue() == null ? "miss" : "hit") + " " + versionedKey);
 			return element.getObjectValue();
 		} catch (Exception ex) {
 			Tml.getLogger().logException("Failed to get a value from EHCache", ex);
@@ -102,8 +71,6 @@ public class EHCache extends CacheAdapter {
 	}
 
 	public void store(String key, Object data, Map<String, Object> options) {
-		if (isInlineMode(options)) return;
-
 		try {
 			getCache().put(new Element(getVersionedKey(key), data));
 		} catch (Exception ex) {
@@ -118,9 +85,5 @@ public class EHCache extends CacheAdapter {
 			Tml.getLogger().logException("Failed to delete a value from EHCache", ex);
 		}
 	}
-
-    public void reset() {
-    	incrementVersion();
-    }
 	
 }
