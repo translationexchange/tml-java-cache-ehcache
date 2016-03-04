@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 Translation Exchange, Inc. All rights reserved.
+ * Copyright (c) 2016 Translation Exchange, Inc. All rights reserved.
  *
  *  _______                  _       _   _             ______          _
  * |__   __|                | |     | | (_)           |  ____|        | |
@@ -44,24 +44,36 @@ public class EHCache extends CacheAdapter {
 	
 	CacheManager singletonManager;
 
+	/**
+	 * EHCache constructor
+	 * 
+	 * @param config
+	 */
 	public EHCache(Map<String, Object> config) {
 		super(config);
 	}
 
+	/**
+	 * Returns EHCache
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	private net.sf.ehcache.Cache getCache() throws Exception {
 		if (singletonManager == null) {
 			singletonManager = CacheManager.create();
-//			singletonManager.addCache(new net.sf.ehcache.Cache(CACHE_NAME, 5000, false, false, getTimeout(), 2));
 			singletonManager.addCache(CACHE_NAME);
 		}
 		
 		return singletonManager.getCache(CACHE_NAME);
 	}
 
+	/**
+	 * Fetch from EHCache
+	 */
 	public Object fetch(String key, Map<String, Object> options) {
 		try {
-			String versionedKey = getVersionedKey(key);
-			Element element = getCache().get(versionedKey);
+			Element element = getCache().get(key);
 			if (element == null || element.getObjectValue() == null) {
 				debug("cache miss " + key);
 				return null;
@@ -74,19 +86,25 @@ public class EHCache extends CacheAdapter {
 		}
 	}
 
+	/**
+	 * Stores in EHCache
+	 */
 	public void store(String key, Object data, Map<String, Object> options) {
 		try {
 			debug("cache store " + key);
-			getCache().put(new Element(getVersionedKey(key), data));
+			getCache().put(new Element(key, data));
 		} catch (Exception ex) {
 			Tml.getLogger().logException("Failed to store a value in EHCache", ex);
 		}
 	}
 
+	/**
+	 * Deletes from EHCache
+	 */
 	public void delete(String key, Map<String, Object> options) {
 		try {
 			debug("cache delete " + key);
-			getCache().remove(getVersionedKey(key));
+			getCache().remove(key);
 		} catch (Exception ex) {
 			Tml.getLogger().logException("Failed to delete a value from EHCache", ex);
 		}
