@@ -3,7 +3,7 @@
 
 	<groupId>com.translationexchange</groupId>
 	<artifactId>tml-ehcache</artifactId>
-	<version>0.2.2</version>
+	<version>0.2.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>tml-ehcache</name>
@@ -46,7 +46,7 @@
 		<connection>scm:git:https://github.com/translationexchange/tml-java-cache-ehcache.git</connection>
 		<developerConnection>scm:git:https://github.com/translationexchange/tml-java-cache-ehcache.git</developerConnection>
 		<url>https://github.com/translationexchange/tml-java-cache-ehcache</url>
-	  <tag>tml-ehcache-0.2.2</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<properties>
