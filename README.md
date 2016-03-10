@@ -5,7 +5,7 @@
 TML EHCache Adapter
 ==================
 
-This cache adapter allows you to cache Tr8n data in EHCache. 
+This cache adapter allows you to cache Tr8n data in EHCache.
 
 
 Installation
@@ -17,7 +17,7 @@ Add the following dependency to your pom.xml:
 <dependency>
   <groupId>com.translationexchange</groupId>
   <artifactId>tml-ehcache</artifactId>
-  <version>0.2.1</version>
+  <version>0.2.2</version>
 </dependency>
 ```
 
