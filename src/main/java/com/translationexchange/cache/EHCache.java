@@ -73,7 +73,7 @@ public class EHCache extends CacheAdapter {
 	 */
 	public Object fetch(String key, Map<String, Object> options) {
 		try {
-			Element element = getCache().get(key);
+			Element element = getCache().get(getVersionedKey(key, options));
 			if (element == null || element.getObjectValue() == null) {
 				debug("cache miss " + key);
 				return null;
@@ -92,7 +92,7 @@ public class EHCache extends CacheAdapter {
 	public void store(String key, Object data, Map<String, Object> options) {
 		try {
 			debug("cache store " + key);
-			getCache().put(new Element(key, data));
+			getCache().put(new Element(getVersionedKey(key, options), data));
 		} catch (Exception ex) {
 			Tml.getLogger().logException("Failed to store a value in EHCache", ex);
 		}
@@ -104,7 +104,7 @@ public class EHCache extends CacheAdapter {
 	public void delete(String key, Map<String, Object> options) {
 		try {
 			debug("cache delete " + key);
-			getCache().remove(key);
+			getCache().remove(getVersionedKey(key, options));
 		} catch (Exception ex) {
 			Tml.getLogger().logException("Failed to delete a value from EHCache", ex);
 		}
